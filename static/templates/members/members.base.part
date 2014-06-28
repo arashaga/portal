@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="BootstrapStyler">
+
+    <title>Dashboard - Intersect</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" type="text/css"
+          href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700">
+    <link rel="stylesheet" type="text/css"
+          href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic">
+    <link rel="stylesheet" type="text/css"
+          href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css?v=3.1.1" rel="stylesheet">
+
+        <!-- JQuery UI core CSS -->
+    <link href="/static/jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.min.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link href="/static/fonts/font-awesome/css/font-awesome.min.css?v=4.0.3" rel="stylesheet">
+
+    <!-- Bootstrap Switch -->
+    <link href="/static/css/libs/bootstrap-switch.min.css?v=3.0.0" rel="stylesheet">
+
+    <!-- Bootstrap Select -->
+    <link href="/static/css/libs/bootstrap-select.min.css" rel="stylesheet">
+
+    <!-- IcoMoon CSS -->
+    <link href="/static/fonts/icomoon/style.css?v=1.0" rel="stylesheet">
+
+    <!-- morris.js -->
+    <link href="/static/css/libs/morris.css" rel="stylesheet">
+
+    <!-- Summernote -->
+    <link href="/static/css/libs/summernote.css" rel="stylesheet">
+    <link href="/static/css/libs/summernote-bs3.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/styler/style.css" rel="stylesheet" type="text/css">
+
+    <link href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css" type="text/css">
+<!-- Include one of jTable styles. -->
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+{% include 'members/navbar.part' %}
+<div class="container">
+    <div class="row">
+        {% block content %}
+
+
+{% endblock %}
+        <aside class="col-md-2 col-md-pull-10 col-sm-3 col-sm-pull-9">
+
+            {% include 'members/sidebar.part' %}
+
+        </aside>
+
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+
+<!-- jQuery -->
+<script src="/static/js/libs/jquery-1.11.0.min.js"></script>
+
+<!--jQuery UI -->
+<script src="/static/jquery-ui-1.10.4/js/jquery-ui-1.10.4.min.js"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/static/bootstrap/js/bootstrap.min.js?v=3.1.1"></script>
+
+<!-- Sparkline -->
+<script src="/static/js/libs/jquery.sparkline.min.js"></script>
+
+<!-- Bootstrap Switch -->
+<script src="/static/js/libs/bootstrap-switch.min.js?v=3.0.0"></script>
+
+<!-- Bootstrap Select -->
+<script src="/static/js/libs/bootstrap-select.min.js"></script>
+
+<!-- Bootstrap File -->
+<script src="/static/js/libs/bootstrap-filestyle.js"></script>
+
+<!-- Raphael JS -->
+<script src="/static/js/libs/raphael-min.js"></script>
+
+<!-- morris.js -->
+<script src="/static/js/libs/morris.min.js"></script>
+
+<!-- Summernote -->
+<script src="/static/js/libs/summernote.min.js"></script>
+
+<!-- Theme script -->
+<script src="/static/js/styler/script.js"></script>
+
+<script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+
+<!-- Custom jQuery Crap -->
+
+{% block jquery %}
+{% endblock %}
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $('#sparkline-graph1').sparkline('html', {
+            type: 'bar',
+            height: '80',
+            barWidth: 5,
+            barColor: '#ff7f00',
+            negBarColor: '#bf0000'
+        });
+
+        $('#sparkline-graph2').sparkline('html', {
+            type: 'bar',
+            height: '80',
+            barWidth: 5,
+            barColor: '#00bfbf',
+            negBarColor: '#bf0000'
+        });
+
+        $('.wysiwyg').summernote({
+            height: 100
+        });
+
+        // Morris chart sample
+        Morris.Line({
+            element: 'chart-1',
+            data: [
+                { y: '2013-10', a: 170, b: 143, c: 140, d: 227, e: 58 },
+                { y: '2013-11', a: 199, b: 87, c: 75, d: 92, e: 169 },
+                { y: '2013-12', a: 165, b: 92, c: 174, d: 100, e: 126 },
+                { y: '2014-01', a: 163, b: 126, c: 246, d: 196, e: 260 },
+                { y: '2014-02', a: 275, b: 148, c: 195, d: 156, e: 175 }
+            ],
+            xkey: 'y',
+            xLabels: 'month',
+            hideHover: 'auto',
+            smooth: false,
+            ykeys: ['a', 'b', 'c', 'd', 'e'],
+            lineColors: ['#10a6de', '#0ebce8', '#fbb05e', '#f35958', '#84a903'],
+            labels: ['Web Design', 'Company Branding', 'Web Application', 'iOS Application', 'Android Application']
+        });
+
+
+        // Morris chart sample
+        Morris.Bar({
+            element: 'chart-2',
+            data: [
+                { y: '2011', a: 229, b: 125, c: 123, d: 162, e: 197 },
+                { y: '2012', a: 226, b: 237, c: 135, d: 163, e: 223 },
+                { y: '2013', a: 146, b: 129, c: 237, d: 151, e: 146 }
+            ],
+            xkey: 'y',
+            xLabels: 'year',
+            hideHover: 'auto',
+            ykeys: ['a', 'b', 'c', 'd', 'e'],
+            barColors: ['#10a6de', '#0ebce8', '#fbb05e', '#f35958', '#84a903'],
+            labels: ['Web Design', 'Company Branding', 'Web Application', 'iOS Application', 'Android Application']
+        });
+
+        $('.inlinebar').sparkline('html', {
+            type: 'bar',
+            barColor: '#468847',
+            lineWidth: 1,
+            height: '20px',
+        });
+        $('.inlinebar2').sparkline('html', {
+            type: 'bar',
+            barColor: '#ea4519',
+            lineWidth: 1,
+            height: '20px',
+        });
+        $('.inlineline').sparkline('html', {
+            type: 'line',
+            barColor: '#468847',
+            lineWidth: 1,
+            height: '20px',
+            lineColor: '#82b721',
+            fillColor: '#fff',
+            width: '30px',
+        });
+        $('.inlineline2').sparkline('html', {
+            type: 'line',
+            barColor: '#1386f2',
+            lineWidth: 1,
+            height: '20px',
+            lineColor: '#1386f2',
+            fillColor: '#b5d8f8',
+            width: '50px'
+        });
+    });
+</script>
+
+{% include 'members/footer.part' %}
+
+</body>
+</html>
