@@ -1,7 +1,7 @@
 /*
-    jTable localization file for 'Bengali' language.
-    Author: Abu Naim Mohammad Nazmul Huda
-*/
+ jTable localization file for 'Bengali' language.
+ Author: Abu Naim Mohammad Nazmul Huda
+ */
 (function ($) {
 
     $.extend(true, $.hik.jtable.prototype.options.messages, {

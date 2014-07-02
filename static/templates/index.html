@@ -67,8 +67,23 @@
         <div class="col-lg-4">
           <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
           <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+
+            <h1>Login to Portal</h1>
+            {% if user.is_authenticated %}
+                <div><p>Hello {{ user.get_full_name }}. </p>
+
+                    <p><a href="logout/">Logout!</a></p></div>
+            {% else %}
+                <form id="login_form" method="post" action="login/">
+                {% csrf_token %}
+                Username: <input type="text" name="username" value="" size="50"/>
+                <br/>
+                Password: <input type="password" name="password" value="" size="50"/>
+                <br/>
+
+                <input type="submit" value="submit"/>
+            {% endif %}
+            </form>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <h2>Join Now</h2>

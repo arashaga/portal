@@ -4,6 +4,6 @@ from django.conf.urls import patterns, url
 
 from project import views
 
-urlpatterns = patterns('',
-    url(r'^$', 'project.views.home', name='index')
+urlpatterns = patterns('project.views',
+                       url(r'^list/', 'project_list', name='project_list')
 )

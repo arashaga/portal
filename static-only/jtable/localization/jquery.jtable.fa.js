@@ -1,7 +1,7 @@
 /*
-    jTable localization file for 'Persian (Farsi)' language.
-    Author: Ehsan Chavoshi
-*/
+ jTable localization file for 'Persian (Farsi)' language.
+ Author: Ehsan Chavoshi
+ */
 (function ($) {
 
     $.extend(true, $.hik.jtable.prototype.options.messages, {
