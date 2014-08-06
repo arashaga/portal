@@ -58,23 +58,9 @@
             <!-- /.panel-heading -->
             <div id="menu-app" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <ul class="nav nav-pills nav-stacked" id="pages-app">
 
-                        <li class="divider"></li>
-                        <li class="">
-                            <!-- TODO add a loop to create a menu item for all the added projects from the database-->
-                            <a href="#supports" class="collapse" data-toggle="collapse" data-parent="pages-app">
-                                <b class="icon-cover"></b><i class="imoon imoon-user2 fa-fw"></i> Help &amp; Support
-                                <i class="fa fa-angle-down pull-right"></i>
-                            </a>
-                            <ul class="panel-collapse collapse  list-unstyled" role="menu" id="supports">
-                                <li class=""><a href="tickets.html"><span class="badge badge-primary">1</span> Support
-                                    Tickets</a></li>
-                                <li class=""><a href="knowledgebase.html"><span class="badge badge-primary">2</span>
-                                    Knowledgebase</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div>{{ mproject }} OK!</div>
+
                 </div>
                 <!-- /.panel-body -->
             </div>
@@ -161,7 +147,47 @@
         <!-- /.panel -->
     </div>
     <!-- /.panel-group -->
+    <div class="panel panel-default panel-no-padding">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#app-menu" href="#menu-app">
+                    Projects
+                </a>
+            </h4>
 
+            <div class="panel-toolbar">
+                <a data-toggle="collapse" data-parent="#app-menu" href="#menu-app">
+                    <i class="fa fa-angle-down pull-right collapse-trigger"></i>
+                </a>
+            </div>
+
+
+        </div>
+        <!-- /.panel-heading -->
+        <div id="menu-app" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked" id="pages-app">
+
+                    <li class="divider"></li>
+                    <li class="">
+                        <!-- TODO add a loop to create a menu item for all the added projects from the database-->
+                        <a href="#supports" class="collapse" data-toggle="collapse" data-parent="pages-app">
+                            <b class="icon-cover"></b><i class="imoon imoon-user2 fa-fw"></i> Help &amp; Support
+                            <i class="fa fa-angle-down pull-right"></i>
+                        </a>
+                        <ul class="panel-collapse collapse  list-unstyled" role="menu" id="supports">
+                            <li class=""><a href="tickets.html"><span class="badge badge-primary">1</span> Support
+                                Tickets</a></li>
+                            <li class=""><a href="knowledgebase.html"><span class="badge badge-primary">2</span>
+                                Knowledgebase</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel-collapse -->
+    </div>
 
     <div class="panel panel-outline panel-no-padding hidden-xs">
         <div class="panel-body">

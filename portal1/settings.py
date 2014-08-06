@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'django_tables2',
     'rest_framework',
     'crispy_forms',
-
 )
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 MIDDLEWARE_CLASSES = (
@@ -112,3 +111,12 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static-only')), #this is where you s
 
 
 AUTH_USER_MODEL = 'signup.SignUp'
+
+ANONYMOUS_USER_ID = -1
+
+
+# THIS IS IMPORTANT YOU NEED TO INCLUDE THIS TO GET YOUR TEST GOING
+import sys
+
+if 'test' in sys.argv:
+    SOUTH_TESTS_MIGRATE = False

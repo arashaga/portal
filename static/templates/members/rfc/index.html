@@ -81,7 +81,7 @@
                                 <table id="rfctable" class="display" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Rfc Number</th>
+                                        <th>RFC Number</th>
                                         <th>RFC title</th>
                                         <th>RFC Questions</th>
                                     </tr>
@@ -108,20 +108,20 @@
         </section>
     </div><!-- /.col-md-10 -->
     {% block jquery %}
-            <script>
-    $(document).ready(function () {
-        $('#rfctable').dataTable({
-            "bProcessing":true,
-            "bServerSide":false, //important
-            "sAjaxDataProp": "data",
-            "sAjaxSource": 'http://127.0.0.1:8000/members/rfc/api/?format=json',
-            "columns": [
-                { "data": "rfc_number"},
-                { "data": "rfc_question"},
-                { "data": "rfc_answer"}
-            ]
-        });
-    });
-</script>
+        <script>
+            $(document).ready(function () {
+                $('#rfctable').dataTable({
+                    "bProcessing": true,
+                    "bServerSide": false, //important
+                    "sAjaxDataProp": "data",
+                    "sAjaxSource": 'http://127.0.0.1:8000/members/rfc/api/?format=json',
+                    "columns": [
+                        { "data": "rfc_number"},
+                        { "data": "rfc_question"},
+                        { "data": "rfc_answer"}
+                    ]
+                });
+            });
+        </script>
     {% endblock %}
 {% endblock %}
