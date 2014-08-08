@@ -1,3 +1,4 @@
+# from myobjperm.models import ObjectPermission
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.conf import settings
@@ -10,10 +11,11 @@ from address.models import Addresses
 # Create your models here.
 
 #New UserManager
-# from objperm.models import ObjectPermission
+# from myobjperm.models import ObjectPermission
+
 
 '''
-This is a fully operational user model for Django with a builtin objection permission capability
+This is a fully operational user model for Django
 You need to add the following in the settings
 
 add the signup to the installed apps
@@ -23,8 +25,6 @@ ANONYMOUS_USER_ID = -1
 import sys
 if 'test' in sys.argv:
     SOUTH_TESTS_MIGRATE = False
-
-
 '''
 
 
@@ -45,7 +45,7 @@ class SignUpUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,email,password):
+    def create_superuser(self, email, password):
         user = self.create_user(email, True, password)
         user.is_admin = True
         user.save(using=self._db)
@@ -55,13 +55,13 @@ class SignUpUserManager(BaseUserManager):
 # This class is defined to overcome the issue with the inline form in the admin based on
 #http://stackoverflow.com/questions/20889806/use-onetoonefield-inlined-in-django-admin
 class AbstractSignUp(models.Model):
-    first_name = models.CharField(max_length=120,null=True,blank=True)
-    last_name = models.CharField(max_length=120,null=True,blank=True)
+    first_name = models.CharField(max_length=120, null=True, blank=True)
+    last_name = models.CharField(max_length=120, null=True, blank=True)
     address = models.OneToOneField(Addresses, blank=True, null=True)
-    email = models.EmailField(max_length=254,unique=True,db_index=True)
+    email = models.EmailField(max_length=254, unique=True, db_index=True)
     #active = models.BooleanField()
     #timestamp = models.DateField(auto_now_add=True,auto_now=False)
-    date_joined = models.DateField(auto_now_add=True,auto_now=False)
+    date_joined = models.DateField(auto_now_add=True, auto_now=False)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -75,7 +75,6 @@ class SignUp(AbstractSignUp, AbstractBaseUser, PermissionsMixin):
     #class SignUp(AbstractSignUp, AbstractBaseUser):
     objects = SignUpUserManager()
 
-    # delete if backend doesn't work
     supports_object_permissions = True
     supports_anonymous_user = True
 
@@ -92,9 +91,18 @@ class SignUp(AbstractSignUp, AbstractBaseUser, PermissionsMixin):
         return self.email
 
     #DO NOT OVERRIDE THIS
-    def has_perm(self,perm,obj=None):
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+    def has_obj_perm(self, perm, obj=None):
+
+
         user_obj = self
-        if not self.is_authenticated():
+        #IMPORTANT: FOR TESTING COMMENT OUT THE FOLLOWING TWO LINES
+        if not user_obj.is_authenticated():
             user_obj = self.objects.get(pk=settings.ANONYMOUS_USER_ID)
 
         if obj is None:
@@ -112,9 +120,6 @@ class SignUp(AbstractSignUp, AbstractBaseUser, PermissionsMixin):
                                             user=user_obj)
         return p.filter(**{'can_%s' % perm: True}).exists()
 
-    def has_module_perms(self,app_label):
-        return True
-
     @property
     def is_staff(self):
         return self.is_admin
@@ -124,10 +129,10 @@ class SignUp(AbstractSignUp, AbstractBaseUser, PermissionsMixin):
 
 
 class ObjectPermission(models.Model):
-    user = models.ForeignKey(SignUp, related_name='objperm_signup')
+    user = models.ForeignKey(SignUp, related_name='signup_objperm')
     can_view = models.BooleanField()
     can_change = models.BooleanField()
     can_delete = models.BooleanField()
 
-    content_type = models.ForeignKey(ContentType, related_name='objperm_ct')
+    content_type = models.ForeignKey(ContentType, related_name='ct_objperm')
     object_id = models.PositiveIntegerField()

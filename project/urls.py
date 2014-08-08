@@ -5,5 +5,6 @@ from django.conf.urls import patterns, url
 from project import views
 
 urlpatterns = patterns('project.views',
-                       url(r'^list/', 'project_list', name='project_list')
+                       url(r'^list/(?P<pk>\d+)', 'project_info', name='project_info'),
+
 )

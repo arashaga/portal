@@ -8,11 +8,10 @@
                     </a>
 
                     <div class="media-body">
-                        <h4 class="media-heading"><span class="welcome">Hello</span>
-                            <span>{{ user.first_name }} {{ user.last_name }}</span></h4>
+                        <h4 class="media-heading"><span class="welcome">Hello</span> <span>Ayla Mosharraf</span></h4>
                     </div>
+                </div>
             </div>
-        </div>
         </div>
         <!-- /.panel-heading -->
 
@@ -44,7 +43,7 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#app-menu" href="#proj-menu">
-                    Projects
+                    Projects{{ selectedProj }}
                 </a>
             </h4>
 
@@ -58,10 +57,11 @@
         <div id="proj-menu" class="panel-collapse collapse ">
             <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked" id="pages-samples">
-                    {% for proj in mproject %}
+                    {% for Tproj in uprojects %}
                         <li class=""><!--TODO WHEN ACTIVE SET THE CLASS="" to CLASS="ACTIVE" -->
-                        <li class=""><a href="projects/list/{{ proj.id }}"><b class="icon-cover"></b><i
-                                class="imoon imoon-list fa-fw"></i> {{ proj }}</a></li>
+                        <li class={% if Tproj == selectedProj %}{{ "active" }}{% else %}
+                            {{ "" }}{% endif %}><a href="index.html"><b class="icon-cover"></b><i
+                                class="imoon imoon-list fa-fw"></i> {{ Tproj }}</a></li>
 
                         </li>
                     {% endfor %}
@@ -85,7 +85,7 @@
 
             <div class="panel-toolbar">
                 <a data-toggle="collapse" data-parent="#app-menu" href="#menu-samples">
-                <i class="fa fa-angle-down pull-right collapse-trigger"></i>
+                    <i class="fa fa-angle-down pull-right collapse-trigger"></i>
                 </a>
             </div>
         </div>

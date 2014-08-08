@@ -1,7 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, render_to_response,RequestContext
 from .forms import RFCForm
 from .models import RFCDocument
 from rest_framework.response import Response
+from project.helper import *
 from .serializer import RFCSerializer
 from rest_framework.decorators import api_view
 from crispy_forms.helper import FormHelper
@@ -18,9 +20,11 @@ def rfc_view(request):
 
     return render_to_response("members/rfc/create.html", locals(), context_instance = RequestContext(request))
 
-def rfc_log_view(request):
 
-    return render(request,"members/rfc/index.html")
+@login_required(login_url='/')
+def rfc_log_view(request, pk):
+    context = project_info_helper(request, pk)
+    return render(request, "members/rfc/index.html", context)
 
 
 # def rfc_log_json(request):
@@ -32,10 +36,10 @@ def rfc_log_view(request):
 #     return HttpResponse(json.dumps(result), content_type="application/json")
 
 @api_view(['GET','POST'])
-def rfc_list(request):
+def rfc_list(request, pk):
 
     if request.method=='GET':
-        rfcs = RFCDocument.objects.all()
+        rfcs = RFCDocument.objects.filter(rfc_project_id=pk)
         serializer = RFCSerializer(rfcs)
         datak = {}
         datak['data'] = serializer.data

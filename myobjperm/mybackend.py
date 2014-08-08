@@ -13,7 +13,7 @@ class ObjectPermBackend(object):
     def authenticate(self, username, password):
         return None
 
-    def has_perm(self, user_obj, perm, obj=None):
+    def has_obj_perm(self, user_obj, perm, obj=None):
         if not user_obj.is_authenticated():
             user_obj = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
 

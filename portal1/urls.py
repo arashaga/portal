@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
-
 from django.contrib import admin
 from rfc.api import RFCResource
 
@@ -19,8 +18,9 @@ urlpatterns = patterns('',
     url(r'^profile/', 'signup.views.profile', name='profile'),
     #url(r'^members/rfc/', 'rfc.views.rfc_log_view', name='rfc_log'),
     #url(r'^members/rfc/create/', 'rfc.views.add_rfc', name='rfc_create'),
-    url(r'^members/', 'signup.views.members', name='members'),
-    url(r'^members/rfc/', include('rfc.urls')),
+    url(r'^members/$', 'signup.views.members', name='members'),
+    # url(r'^members/', MemberView.as_view(), name='members'),
+    url(r'^members/projects/rfc/(?P<pk>\d+)/', include('rfc.urls')),
     #url(r'^api/', 'rfc.views.rfc_log_json', name='rfc_json'),
    #(r'^api/', rfc_log_json().as_view),
    url(r'^login/$', 'signup.views.user_login', name='login'),

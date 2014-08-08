@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-#from  django.contrib.auth.models import User
+# from  django.contrib.auth.models import User
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'django_tables2',
     'rest_framework',
     'crispy_forms',
+    'debug_toolbar'
 )
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 MIDDLEWARE_CLASSES = (
@@ -105,10 +106,10 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, "static", "templates")),
 
 
 MEDIA_URL = "/media/"
-STATIC_ROOT = (os.path.join(BASE_DIR, 'static')) # this is where Django finds all the collected files
+STATIC_ROOT = (os.path.join(BASE_DIR, 'static'))  # this is where Django finds all the collected files
 MEDIA_ROOT = (os.path.join(BASE_DIR, "static", "media"))
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static-only')), #this is where you save all of your static and then collect them
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR,
+                                 'static-only')),  #this is where you save all of your static and then collect them
 
 AUTH_USER_MODEL = 'signup.SignUp'
 
