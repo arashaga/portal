@@ -43,7 +43,7 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#app-menu" href="#proj-menu">
-                    Projects{{ selectedProj }}
+                    Projects
                 </a>
             </h4>
 
@@ -54,7 +54,7 @@
             </div>
         </div>
         <!-- /.panel-heading -->
-        <div id="proj-menu" class="panel-collapse collapse ">
+        <div id="proj-menu" class="panel-collapse collapse in">
             <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked" id="pages-samples">
                     {% for Tproj in uprojects %}

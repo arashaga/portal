@@ -7,6 +7,7 @@ from project.helper import *
 from .serializer import RFCSerializer
 from rest_framework.decorators import api_view
 from crispy_forms.helper import FormHelper
+from project.models import ProjectContacts, ProjectContactTitles
 
 
 
@@ -24,6 +25,7 @@ def rfc_view(request):
 @login_required(login_url='/')
 def rfc_log_view(request, pk):
     context = project_info_helper(request, pk)
+
     return render(request, "members/rfc/index.html", context)
 
 
@@ -48,9 +50,26 @@ def rfc_list(request, pk):
         pass
 
 
-def add_rfc(request):
+def add_rfc(request, pk):
+    project = Projects.objects.get(pk=pk)
 
-    form = RFCForm()
+    # TODO can be a utility function itself
+    title = ProjectContacts.objects.select_related().get(project_contact_id=request.user)
+    print title.project_contact_title
+
+    project_issued_person = None
+    if title.project_contact_title.__str__() == 'OAR':
+        project_issued_person = title.project_contact.get_full_name()
+
+    #print project.project_name
+    form = RFCForm(initial={'rfc_project': project.project_name,
+                            'rfc_issued_to': project_issued_person,
+                            'rfc_answer_authorized_by': project_issued_person,
+    }, )
+    form.fields['rfc_answer']
+    print form.Meta.widgets
+    # #.widgets.attrs['readonly'] = 'readonly'
+    #print form
     return render(request,'members/rfc/create.html',{'form': form})
 
 

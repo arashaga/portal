@@ -7,7 +7,7 @@
                     <i class="imoon imoon-list"></i>
                 </div>
                 <div class="details">
-                    <a href="/members/projects/rfc/{{ selectedProjID }}/list">
+                    <a href="/members/projects/{{ selectedProjID }}/rfc/list">
                         <div class="number">{{ rfc_count }}</div>
                         <div class="description">RFC</div>
                     </a>

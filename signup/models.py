@@ -5,13 +5,14 @@ from django.conf import settings
 from django.utils.encoding import smart_unicode
 from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-from address.models import Addresses
+# from address.models import Addresses
 #import re
 
 # Create your models here.
 
 #New UserManager
 # from myobjperm.models import ObjectPermission
+#from address.models import Addresses
 
 
 '''
@@ -32,7 +33,7 @@ class SignUpUserManager(BaseUserManager):
     def create_user(self, email, is_admin, password=None):
         if not email:
             raise ValueError('User must have an email address!')
-
+        #address = Addresses.objects.get()
         user = self.model(
             email=self.normalize_email(email),
             is_admin=False,
@@ -57,10 +58,9 @@ class SignUpUserManager(BaseUserManager):
 class AbstractSignUp(models.Model):
     first_name = models.CharField(max_length=120, null=True, blank=True)
     last_name = models.CharField(max_length=120, null=True, blank=True)
-    address = models.OneToOneField(Addresses, blank=True, null=True)
+    #address = models.OneToOneField(Addresses, blank=True, null=True)
     email = models.EmailField(max_length=254, unique=True, db_index=True)
-    #active = models.BooleanField()
-    #timestamp = models.DateField(auto_now_add=True,auto_now=False)
+
     date_joined = models.DateField(auto_now_add=True, auto_now=False)
 
     is_active = models.BooleanField(default=True)
@@ -72,7 +72,6 @@ class AbstractSignUp(models.Model):
 
 # class SignUp(models.Model): with permissions
 class SignUp(AbstractSignUp, AbstractBaseUser, PermissionsMixin):
-    #class SignUp(AbstractSignUp, AbstractBaseUser):
     objects = SignUpUserManager()
 
     supports_object_permissions = True
@@ -84,7 +83,10 @@ class SignUp(AbstractSignUp, AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         # The user is identified by their email address
-        return smart_unicode(self.first_name + ' ' + self.last_name)
+        if self.first_name and self.last_name:
+            return smart_unicode(self.first_name + ' ' + self.last_name)
+
+        return smart_unicode('Unknown User - Please specify the ful name.')
 
     def get_short_name(self):
         # The user is identified by their email address

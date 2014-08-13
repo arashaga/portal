@@ -1,7 +1,7 @@
 __author__ = 'arashaga'
 
 from .models import RFCDocument
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Div
 from project.models import ProjectContacts
@@ -43,6 +43,14 @@ class RFCForm(ModelForm):
 
     class Meta:
         model = RFCDocument
+        widgets = {
+            'rfc_project': TextInput(attrs={'readonly': 'readonly'}),
+            'rfc_issued_to': TextInput(attrs={'readonly': 'readonly'}),
+            'rfc_issued_by': TextInput(attrs={'readonly': 'readonly'}),
+            'rfc_issued_date': TextInput(attrs={'readonly': 'readonly'}),
+            'rfc_answer_reviewed_by': TextInput(attrs={'readonly': 'readonly'}),
+            'rfc_answer_authorized_by': TextInput(attrs={'readonly': 'readonly'}),
+        }
 
 
 

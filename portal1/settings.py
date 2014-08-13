@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'django_tables2',
     'rest_framework',
     'crispy_forms',
-    'debug_toolbar'
+    'debug_toolbar',
 )
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 MIDDLEWARE_CLASSES = (
@@ -92,7 +92,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
 )
-#STATIC_ROOT = (os.path.join(__file__, "static",)),
+# STATIC_ROOT = (os.path.join(__file__, "static",)),
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.encoding import smart_unicode
+from signup.models import SignUp
 from state.models import States
 
 
@@ -14,6 +15,7 @@ class Addresses(models.Model):
     fax = models.CharField(max_length=120, null=True, blank=True)
     website = models.URLField()
     date_modified = models.DateField(auto_now=True)
+    user = models.ForeignKey(SignUp)
 
     def get_full_address(self):
         list = [self.address, self.city, States.state_abv, self.zipcode]

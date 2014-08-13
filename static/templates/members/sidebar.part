@@ -11,8 +11,8 @@
                         <h4 class="media-heading"><span class="welcome">Hello</span>
                             <span>{{ user.first_name }} {{ user.last_name }}</span></h4>
                     </div>
+                </div>
             </div>
-        </div>
         </div>
         <!-- /.panel-heading -->
 
@@ -60,7 +60,7 @@
                 <ul class="nav nav-pills nav-stacked" id="pages-samples">
                     {% for proj in mproject %}
                         <li class=""><!--TODO WHEN ACTIVE SET THE CLASS="" to CLASS="ACTIVE" -->
-                        <li class=""><a href="projects/list/{{ proj.id }}"><b class="icon-cover"></b><i
+                        <li class=""><a href="projects/{{ proj.id }}"><b class="icon-cover"></b><i
                                 class="imoon imoon-list fa-fw"></i> {{ proj }}</a></li>
 
                         </li>
@@ -85,7 +85,7 @@
 
             <div class="panel-toolbar">
                 <a data-toggle="collapse" data-parent="#app-menu" href="#menu-samples">
-                <i class="fa fa-angle-down pull-right collapse-trigger"></i>
+                    <i class="fa fa-angle-down pull-right collapse-trigger"></i>
                 </a>
             </div>
         </div>

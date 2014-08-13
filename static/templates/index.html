@@ -92,7 +92,10 @@
 
                 <h1>Login to Portal</h1>
                 {% if user.is_authenticated %}
-                    <div><p>Hello {{ user.get_full_name }}. </p>
+                    <div><p>{% if user.get_full_name %}Hello {{ user.get_full_name }}{% else %}
+                        {{ 'Mr. or Ms. Unknown!' }}{% endif %}</p>
+
+                        <p><b><a href="/members/">Click here to proceed to the member area!</a></b></p>
 
                         <p><a href="logout/">Logout!</a></p></div>
                 {% else %}

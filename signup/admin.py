@@ -1,12 +1,6 @@
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.utils.html import format_html_join
-from django.utils.safestring import mark_safe
+from django.contrib.admin import ModelAdmin
 from .forms import *
-from django.forms import Form
-from .models import SignUp
-from django.contrib.auth.models import Group
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+
 from .models import SignUp
 from django import forms
 from django.utils.translation import ugettext_lazy as _
@@ -39,13 +33,19 @@ from .reverseadmin import ReverseModelAdmin
 #
 # #admin.site.unregister(SignUp)
 # admin.site.register(SignUp,SignUpAdmin)
-class AddressesForm(forms.Form):
-    pass
+class AddressesForm(admin.TabularInline):
+    model = Addresses
 
 
-class SignUpAdmin(ReverseModelAdmin):
+# class SignUpAdmin(ReverseModelAdmin):
+class SignUpAdmin(ModelAdmin):
     inline_type = 'stacked'
-    inline_reverse = ('address',)
+    # inline_reverse = ('address',)
+    inlines = (AddressesForm,)
+
+    fields = (
+    ('first_name', 'last_name'), 'email', 'password', ('is_active', 'is_admin', 'is_superuser'), 'user_permissions')
+    filter_horizontal = ('user_permissions',)
 
 
 admin.site.register(SignUp, SignUpAdmin)
